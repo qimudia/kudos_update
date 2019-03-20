@@ -1,6 +1,6 @@
 const express = require("express");
-const authWare = require("./middleware/authware");
-const mongoose = require('mongoose')
+//const authWare = require("./middleware/authware");
+const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
@@ -14,9 +14,9 @@ const MONGODB_URI = require("./config/keys");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Kudos', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Kudos2', { useNewUrlParser: true });
 
-app.use(authWare);
+//app.use(authWare);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 require('./routes/api-routes')(app);
-require('./routes/html-routes.js')(app);
+//require('./routes/html-routes.js')(app);
 
 
 // Start the API server

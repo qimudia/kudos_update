@@ -1,98 +1,78 @@
-const db = require('../models');
+const kudos = require("../models/kudos");
+const User = require("../models/users");
 
 module.exports = function(app) {
-
-    //route to get all drug information (currently just for 2015)
-    app.get('/api/drugs', function(req,res) {
-        db.spending2011.findAll({limit:25}).then(function(data) {
-            console.log("I worked");
-            res.json(data);
-        }).catch(function(error) {
-            res.json({error:error})
-        });
-    });
-
-    //route to get drugs based on name (generic and brandName)
-    app.get('/api/drugs/:name', function(req,res) {
-        db.spending2011.findAll({
-            where: {
-                $or: [
-                    {drugname_generic: {
-                            $like: `%${req.params.name}%`}},
-                    {drugname_brand: {
-                            $like: `%${req.params.name}%`}}
-                ]
-            }
-        }).then(function(data) {
-            res.json(data)
-        }).catch(function(error) {
-            res.json({error:error})
-        });
-    });
-
-    //route to get drugs with spending higher than inputted value.
-    app.get('/api/drugs/spendingH/:number', function(req,res) {
-        db.spending2011.findAll({
-            where: {
-                total_spending: {
-                    $gte: req.params.number}}
-    }).then(function(data) {
+  app.get("/api/users", function(req, res) {
+    User
+      .find({})
+      // .populate("kudos")
+      .then(function(data) {
         res.json(data);
-    }).catch(function(error) {
-        res.json({error:error})
-    });
-});
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 
-    //route to get drugs with spending lower than inputted value.
-    app.get('/api/drugs/spendingL/:number', function(req,res) {
-        db.spending2011.findAll({
-            where: {
-                total_spending: {
-                    $lte: req.params.number}}
-        }).then(function(data) {
-            res.json(data);
-        }).catch(function(error) {
-            res.json({error:error})
-        });
-    });
+  app.get("/api/kudos", function(req, res) {
+    kudos
+      .find({})
+      .populate('to')
+      .populate('from')
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 
-    //route to get drugs based on total spending
-    app.get('/api/drugs/spending/:range1/:range2', function(req,res) {
-        db.spending2011.findAll({
-            where: {
-                total_spending: {
-                    $between: [req.params.range1, req.params.range2]}
-            }
-        }).then(function(data) {
-            res.json(data);
-        }).catch(function(error) {
-            res.json({error:error})
-        });
-    });
+  app.post("/api/users", function(req, res) {
+    console.log('here')
+    User
+      .create({
+        //userId: req.body.userId,
+        name: req.body.name
+      })
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 
+  app.post("/api/kudos", function(req, res) {
+    const newKudo = {
+      title: req.body.title,
+      body: req.body.body,
+      to: req.body.to,
+      from: req.body.from
+    };
 
+    console.log(newKudo);
+    kudos.create(newKudo)
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 
-
-
-
-
-    //route to post a new drug to watch
-    app.post('/api/users', function(req,res) {
-        db.Users.create(req.body).then(function(data) {
-            res.json(data)
-        }).catch(function(error) {
-            res.json({error:error})
-        });
-    });
-
-    app.post('/api/users', function(req,res) {
-        
-    })
-
-
-
-
-
-
-
-}
+  // app.post('/api/kudos', function (req, res) {
+  //   kudos.create({
+  //     //userId: req.body.userId,
+  //     senderUserId: req.body.senderUserId,
+  //     receiverUserId: req.body.receiverUserId,
+  //     title: req.body.title,
+  //     body:req.body.body
+  //   })
+  //     .then(function (data) {
+  //       res.json(data);
+  //     })
+  //     .catch(function (err) {
+  //       res.json(err);
+  //     });
+  // });
+};

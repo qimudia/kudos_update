@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 /**
  * Create a new Task Schema to map Mongo documents to an object in our node application
  */
-var usersSchema = new Schema({
+var UserSchema = new Schema({
 
   /*userId: {
     type: String,
@@ -23,6 +23,6 @@ var usersSchema = new Schema({
 
 });
 
-const usersPost = mongoose.model("usersPost", usersSchema);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = usersPost;
+module.exports = User;

@@ -26,12 +26,12 @@ var kudosSchema = new Schema({
   to: [
     {
       type: Schema.Types.ObjectId,
-      ref: "usersPost"
+      ref: "User"
     }
   ],
   from: [{
     type: Schema.Types.ObjectId,
-    ref: 'usersPost'
+    ref: 'User'
   }]
   // createdAt: {
   //   type: Date,

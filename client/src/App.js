@@ -1,23 +1,32 @@
-import React, { Component } from 'react';
 import React from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import Landing from './components/pages/Landing';
-import Login from './components/pages/Login';
-import Profile from './components/pages/Profile';
-import Results from './components/pages/Results';
-import Drug from './components/pages/Drug';
+import giveKudos from './components/pages/giveKudos';
+import homePage from './components/pages/homePage';
+import result from './components/pages/result';
+
+// import { Link } from 'react-router-dom'
+import axios from 'axios';
 import './App.css';
+import './index.css';
 
 const App = () => (
   <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={Landing} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/profile' component={Profile} />
-      <Route exact path='/results' component={Results} />
-      <Route exact path='/drug' component={Drug} />
-    </Switch>
+    <div className="tiny">
+      <header>
+      <h1 className="Box">Tiny Improvement</h1>
+        <nav className="Link">
+          <Link to={`/`} >Home</Link> |
+          <Link to={`/giveKudos`} >Give Kudos</Link> |
+          <Link to={`/result`} >View Kudos</Link>
+        </nav>
+      </header>
+      <Switch>
+        <Route exact path='/' component={homePage} />
+        <Route exact path='/giveKudos' component={giveKudos} />
+        <Route exact path='/result' component={result} />
+      </Switch>
+    </div>
   </BrowserRouter>
-);
+)
 
 export default App;
