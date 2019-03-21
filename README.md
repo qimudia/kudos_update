@@ -1,3 +1,15 @@
+For this assignment, we where ask build an App called Tiny Improvements. 
+
+This application allow users to send compliments or "Kudos" to other users 
+
+The Kudos are then displayed on the page for all to see, on a  React.jS front-end.
+
+We used a MongoDB database to store all Kudos and User data which will then be output onto the DOM.
+
+When you get to the home page, click on GIVE KUDOS to send your message..
+
+Click on VIEW KUDOS to view previous kudos from other users..
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
