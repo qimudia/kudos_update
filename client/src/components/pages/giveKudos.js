@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 import "../../App.css";
 import axios from "axios";
+import result from "./result";
+
 //import { Button } from 'reactstrap';
 //import { Button } from 'react-native';
 //import { stringify } from "querystring";
@@ -89,12 +91,13 @@ class giveKudos extends React.Component {
             onChange={this.handleChange}
           />
           <select
+            defaultValue=""
             name="from"
             value={this.from}
             placeholder="Select from"
             onChange={this.handleChange}
           >
-            <option selected disabled value="">
+            <option disabled value="">
               Sender
             </option>
             {this.state.users.map(user => (
@@ -104,12 +107,13 @@ class giveKudos extends React.Component {
             ))}
           </select>
           <select
+            defaultValue=""
             name="to"
             value={this.to}
             placeholder="Select to"
             onChange={this.handleChange}
           >
-          <option selected disabled value="">
+            <option disabled value="">
               Receiver
             </option>
             {this.state.users.map(user => (

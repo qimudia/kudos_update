@@ -3,9 +3,6 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import giveKudos from './components/pages/giveKudos';
 import homePage from './components/pages/homePage';
 import result from './components/pages/result';
-
-// import { Link } from 'react-router-dom'
-import axios from 'axios';
 import './App.css';
 import './index.css';
 

@@ -19,8 +19,9 @@ code {
 }
 .tiny{
   margin: 40px;
-  height: 560px;
+  height: 100%;
   border: 5px solid rgb(54, 50, 50);
+  padding-left: 30px;
   /*background-color: darkgray;*/
   background-color:lightblue;
 }
