@@ -1,1 +1,1 @@
-module.exports= "mongodb+srv://q_imudia:Akunore99$@cluster0-pfaxr.mongodb.net/kudos2?retryWrites=true";
+module.exports= "mongodb+srv://q_imudia:Akunore99$@cluster0-pfaxr.mongodb.net/kudos?retryWrites=true";
